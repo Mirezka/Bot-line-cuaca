@@ -9,8 +9,10 @@ Modified @ Farzain - zFz
 require_once('./line_class.php');
 require_once('./unirest-php-master/src/Unirest.php');
 
-$channelAccessToken = 'YOUR-CHANNEL-ACCESS-TOKEN'; //sesuaikan 
-$channelSecret = 'YOUR-CHANNEL-SECRET-CODE';//sesuaikan
+$channelAccessToken = 'rOkN23Yzridc2V7rKk5J8QYN6eP3ulWjWZEQSoacSr7lAl+ghFlJzWwAS0NzuW8BTGpREZS1qoiNgz5SuRizCJD6hncgxLXqIz8WWdZOhcQrrWb1ZVoxZ8+x3D6m2fGvK1svPEZSRZICni04/dyUPQdB04t89/1O/w1cDnyilFU=
+'; //sesuaikan 
+$channelSecret = 'ee5a6ac84470d80e3de0873e0e6b45c2
+';//sesuaikan
 
 $client = new LINEBotTiny($channelAccessToken, $channelSecret);
 
@@ -43,7 +45,7 @@ function cuaca($keyword) {
     $response = Unirest\Request::get("$uri");
 
     $json = json_decode($response->raw_body, true);
-    $result = "Halo Kak ^_^ Ini ada Ramalan Cuaca Untuk Daerah ";
+    $result = "";
 	$result .= $json['name'];
 	$result .= " Dan Sekitarnya";
 	$result .= "\n\nCuaca : ";
@@ -61,8 +63,8 @@ function cuaca($keyword) {
 # require_once('./src/function/hard.php');
 
 //show menu, saat join dan command /menu
-if ($type == 'join' || $command == '/menu') {
-    $text = "Halo Kak ^_^\nAku Bot Prediksi Cuaca, Kamu bisa mengetahui prediksi cuaca di daerah kamu sesuai dengan sumber BMKG";
+if ($type == 'join' || $command == '@menu') {
+    $text = "";
     $balas = array(
         'replyToken' => $replyToken,
         'messages' => array(
@@ -76,7 +78,7 @@ if ($type == 'join' || $command == '/menu') {
 
 //pesan bergambar
 if($message['type']=='text') {
-	    if ($command == '/cuaca') {
+	    if ($command == '@cuaca') {
 
         $result = cuaca($options);
         $balas = array(
@@ -97,7 +99,7 @@ if($message['type']=='text') {
 							'messages' => array(
 								array(
 										'type' => 'text',									
-										'text' => 'Makasih Kak Stikernya ^_^'										
+										'text' => 'Ngirim stiker ngapain ya'										
 									
 									)
 							)
